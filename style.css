@@ -135,32 +135,33 @@ footer {
   font-size: 0.85em;
   color: #ccc;
 }
-/* === 1) Reserve space for the footer so the hero never sits behind it === */
-:root { --footer-h: 64px; } /* adjust if your footer is taller/shorter */
 
-.hero {
-  min-height: calc(100vh - var(--footer-h)) !important;
+/* Reserve predictable space for the footer */
+:root { --footer-h: 56px; } /* tweak to 60–64px if needed */
+.site-footer { padding: 10px 0 14px; }
+
+/* Make the hero always fit the viewport *above* the footer */
+.hero{
+  min-height: calc(100vh - var(--footer-h));
+  display: grid;
+  place-items: center;
+  position: relative;
 }
 
-/* If your footer height changes later, just tweak --footer-h above */
-.site-footer { padding: 12px 0 16px; } /* keep it compact and predictable */
-
-/* === 2) Show more of the lower/mid part of the image (where the action is) === */
-.hero__bg {
-  background-position: center 60% !important; /* bias view downward a bit */
-  /* You can try 65–70% if you want even more of the bottom visible */
+/* Show more of the lower portion of the rendering + slight brighten */
+.hero__bg{
+  background: url("images/rendering.jpg") center 70% / cover no-repeat !important;
+  filter: brightness(1.06) saturate(1.04);
 }
 
-/* === 3) Soften + warm the overlay (no more ominous mask) === */
-.hero__overlay {
-  /* stack multiple subtle layers instead of one heavy dark wash */
+/* Light, warm overlay so it doesn’t feel ominous */
+.hero__overlay{
   background:
-    /* gentle top shadow for header legibility */
-    linear-gradient(180deg, rgba(0,0,0,.22) 0%, rgba(0,0,0,.10) 38%, rgba(0,0,0,0) 70%),
-    /* a faint warm tint over the whole hero to brighten perception */
-    linear-gradient(0deg, rgba(255, 244, 230, .10), rgba(255, 244, 230, .10));
+    /* gentle top shading for legibility under the header area */
+    linear-gradient(180deg, rgba(0,0,0,.18) 0%, rgba(0,0,0,.08) 40%, rgba(0,0,0,0) 72%),
+    /* faint warm wash to counter “cold/dark” look */
+    radial-gradient(1200px 400px at 50% 40%, rgba(255,245,230,.12), rgba(255,245,230,0) 70%);
 }
 
-/* Optional: if the text still feels low-contrast on small screens,
-   add a tiny text shadow to the hero heading/subhead only (already present) */
+/* Keep a touch of text shadow for readability on small screens */
 .hero h1, .tagline { text-shadow: 0 1px 2px rgba(0,0,0,.25); }
