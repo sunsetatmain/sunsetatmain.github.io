@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sunset at Main — Coming Soon</title>
+
+  <!-- Social cards (optional but nice) -->
+  <meta property="og:title" content="Sunset at Main — Coming Soon">
+  <meta property="og:description" content="A new public–private partnership in Venice bringing housing, street improvements, and community benefits. Sign up for updates.">
+  <meta property="og:image" content="images/rendering.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preload" as="image" href="images/rendering.jpg">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <!-- If you have a logo, drop an <img> here -->
+      <span class="wordmark">Sunset at Main</span>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" role="img" aria-label="Project rendering">
+      <div class="hero__bg"></div>
+      <div class="hero__overlay"></div>
+      <div class="hero__content">
+        <h1>Coming Soon...</h1>
+        <p class="tagline">
+          A new public–private partnership delivering mixed-income housing and community benefits.
+        </p>
+
+        <!-- Buttondown Mailing List Subscription Form -->
+		<form
+		  class="signup"
+		  action="https://buttondown.email/api/emails/embed-subscribe/sunsetatmain"
+		  method="post"
+		  accept-charset="UTF-8">
+		  <input
+			type="email"
+			name="email"
+			class="input"
+			placeholder="Enter your email"
+			aria-label="Email address"
+			required>
+		  <input type="hidden" name="redirect_url" value="https://sunsetatmain.com/thanks.html">
+		  <button class="btn" type="submit">Get updates</button>
+		</form>
+
+        <p class="microcopy">We will only email with meaningful updates. Unsubscribe anytime.</p>
+      </div>
+    </section>
+
+    <!-- OPTIONAL SECOND ROW (uncomment if you want a compact “About” strip)
+    <section class="about">
+      <div class="about__inner">
+        <h2>About the project</h2>
+        <p>Sunset at Main is a collaboration between [Agency/City] and [Developer] to bring [units/uses]. Construction timeline and community meetings will be announced here.</p>
+      </div>
+    </section>
+    -->
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer__inner">
+      <span>© <span id="y"></span> Metro Venice Art Collective, LLC</span>
+      <span class="dot">•</span>
+      <a href="privacy.html">Privacy</a>
+      <!-- Optional partner tags:
+      <span class="dot">•</span>
+      <span>In partnership with [Agency]</span>
+      -->
+      <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+    </div>
+  </footer>
+</body>
+</html>

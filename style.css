@@ -1,0 +1,227 @@
+:root{
+  --bg:#0b0d12;
+  --text:#0e1116;
+  --muted:#6b7280;
+  --white:#fff;
+  --brand:#111827; /* near-black button */
+  --brand-hover:#0b1220;
+  --card:#ffffff;
+  --overlay-from: rgba(11,13,18,0.25);
+  --overlay-to:   rgba(11,13,18,0.55);
+  --radius:14px;
+  --shadow: 0 10px 30px rgba(0,0,0,.25);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color:var(--text);
+  background:#f5f7fb;
+}
+
+/* Header */
+.site-header{
+  position:fixed; top:0; left:0; right:0;
+  z-index:20;
+  display:flex; align-items:center; justify-content:center;
+  padding:18px 24px; /* was 14px 20px */
+  background:linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,0));
+  pointer-events:none;
+}
+.brand{ pointer-events:auto; }
+
+.wordmark {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: clamp(32px, 4.5vw, 60px); /* scales with screen, caps at 60px */
+  line-height: 1.05;
+  color: var(--white);
+  text-shadow: 0 1px 2px rgba(0,0,0,.45);
+}
+
+/* Hero */
+.hero{
+  position:relative;
+  min-height: 88vh;
+  display:grid;
+  place-items:center;
+  overflow:clip;
+}
+.hero__bg{
+  position:absolute; inset:0;
+  background:url("images/rendering.jpg") center/cover no-repeat;
+  transform:scale(1.03); /* subtle zoom for depth */
+  filter: saturate(1.05) contrast(1.02) brightness(.98);
+  will-change:transform;
+}
+.hero__overlay{
+  position:absolute; inset:0;
+  background: linear-gradient(180deg, var(--overlay-from), var(--overlay-to));
+}
+.hero__content{
+  position:relative; z-index:10;
+  width:min(760px, 92vw);
+  padding: clamp(18px, 3vw, 28px);
+  text-align:center;
+  color:var(--white);
+  backdrop-filter: blur(1px);
+}
+.hero h1{
+  margin:0 0 10px 0;
+  font-size: clamp(34px, 6vw, 56px);
+  line-height:1.02;
+  letter-spacing:.2px;
+}
+.tagline{
+  margin:0 auto 22px;
+  max-width: 46ch;
+  font-size: clamp(16px, 2.2vw, 20px);
+  color: #e5e7eb;
+}
+
+/* Form */
+.signup{
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  align-items:center;
+  margin: 0 auto 10px;
+  width:100%;
+  max-width:560px;
+}
+.input{
+  flex:1 1 auto;
+  min-width: 0;
+  padding: 14px 14px;
+  font-size: 16px;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255,255,255,.35);
+  background: rgba(255,255,255,.12);
+  color: #fff;
+  outline: none;
+}
+.input::placeholder{ color: #e5e7ebcc; }
+.input:focus{
+  border-color:#fff;
+  background: rgba(255,255,255,.18);
+}
+
+.btn{
+  flex:0 0 auto;
+  padding: 14px 18px;
+  font-size: 15px;
+  font-weight: 650;
+  border-radius: var(--radius);
+  border: none;
+  color:#fff;
+  background: var(--brand);
+  cursor:pointer;
+  box-shadow: var(--shadow);
+}
+.btn:hover{ background: var(--brand-hover); }
+.btn:focus-visible{ outline:2px solid #fff; outline-offset:2px; }
+
+.microcopy{
+  margin:6px 0 0;
+  font-size:13px;
+  color:#e5e7ebcc;
+}
+
+/* Optional second row */
+.about{
+  background:#fff;
+}
+.about__inner{
+  margin: 28px auto;
+  width:min(980px, 92vw);
+  padding: 18px 0 30px;
+}
+.about__inner h2{
+  margin:0 0 6px;
+  font-size: clamp(20px, 2.4vw, 26px);
+}
+.about__inner p{
+  margin:0;
+  color:#374151;
+  line-height:1.55;
+}
+
+/* Footer */
+.site-footer{
+  background:#ffffff;
+  border-top:1px solid #e5e7eb;
+}
+.footer__inner{
+  display:flex; gap:12px; flex-wrap:wrap;
+  align-items:center; justify-content:center;
+  width:min(980px, 92vw);
+  margin:0 auto;
+  padding:14px 0 18px;
+  color:#6b7280;
+  font-size:14px;
+}
+.footer__inner a{ color:#6b7280; text-decoration:none; }
+.footer__inner a:hover{ text-decoration:underline; }
+.dot{ opacity:.7 }
+
+/* === Fix centering + header overlap (override) === */
+:root { --header-height: 72px; }        /* adjust if you change the title size */
+
+.site-header {                           /* keep your larger title */
+  padding: 18px 24px;
+}
+
+.hero {
+  display: grid !important;              /* ensure grid centering applies */
+  place-items: center !important;
+  min-height: 88vh;
+}
+
+.hero__content {
+  margin-inline: auto !important;        /* hard center horizontally */
+  text-align: center !important;
+  padding-top: calc(var(--header-height) + 12px);  /* clear the fixed header */
+}
+
+.signup {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center;
+  gap: 10px;
+}
+
+/* === Fix: make hero fill the viewport; remove layout overrides === */
+
+/* undo any earlier flex layout on body/main */
+body { display: block !important; }
+main { display: block !important; }
+
+/* hero should cover the full screen height */
+.hero{
+  min-height: 100vh !important;
+  display: grid !important;
+  place-items: center !important;
+  position: relative !important;
+}
+
+/* keep the content from hiding under the fixed header */
+.hero__content{
+  padding-top: 72px !important; /* adjust if your header gets taller/shorter */
+}
+
+/* make sure the background layers cover the hero fully */
+.hero__bg,
+.hero__overlay{
+  position: absolute !important;
+  inset: 0 !important;
+}
+
+/* footer: no accidental extra gap before it */
+.site-footer{
+  margin-top: 0 !important;
+  padding: 12px 0 16px !important; /* keep it tight */
+  border-top: 1px solid #e5e7eb;
+}
