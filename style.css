@@ -1,227 +1,166 @@
-:root{
-  --bg:#0b0d12;
-  --text:#0e1116;
-  --muted:#6b7280;
-  --white:#fff;
-  --brand:#111827; /* near-black button */
+:root {
+  --brand:#111827;
   --brand-hover:#0b1220;
-  --card:#ffffff;
+  --white:#fff;
   --overlay-from: rgba(11,13,18,0.25);
   --overlay-to:   rgba(11,13,18,0.55);
   --radius:14px;
-  --shadow: 0 10px 30px rgba(0,0,0,.25);
+  --shadow:0 10px 30px rgba(0,0,0,.25);
 }
 
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;
+* { box-sizing: border-box; }
+html,body { height:100%; margin:0; }
+body {
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  color:var(--text);
   background:#f5f7fb;
+  color:#111;
 }
 
 /* Header */
-.site-header{
+.site-header {
   position:fixed; top:0; left:0; right:0;
   z-index:20;
   display:flex; align-items:center; justify-content:center;
-  padding:18px 24px; /* was 14px 20px */
+  padding:18px 24px;
   background:linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,0));
-  pointer-events:none;
 }
-.brand{ pointer-events:auto; }
-
-.wordmark {
-  font-family: 'Montserrat', sans-serif;
+.site-header .brand {
+  font-size: clamp(28px, 4vw, 48px); /* make “Sunset at Main” large */
   font-weight: 800;
-  text-transform: uppercase;
-  font-size: clamp(32px, 4.5vw, 60px); /* scales with screen, caps at 60px */
-  line-height: 1.05;
   color: var(--white);
-  text-shadow: 0 1px 2px rgba(0,0,0,.45);
+  text-shadow: 0 1px 3px rgba(0,0,0,.5);
 }
 
 /* Hero */
-.hero{
+.hero {
   position:relative;
   min-height: 88vh;
   display:grid;
   place-items:center;
-  overflow:clip;
 }
-.hero__bg{
+.hero__bg {
   position:absolute; inset:0;
   background:url("images/rendering.jpg") center/cover no-repeat;
-  transform:scale(1.03); /* subtle zoom for depth */
-  filter: saturate(1.05) contrast(1.02) brightness(.98);
-  will-change:transform;
 }
-.hero__overlay{
+.hero__overlay {
   position:absolute; inset:0;
   background: linear-gradient(180deg, var(--overlay-from), var(--overlay-to));
 }
-.hero__content{
+.hero__content {
   position:relative; z-index:10;
   width:min(760px, 92vw);
-  padding: clamp(18px, 3vw, 28px);
+  padding: 20px;
   text-align:center;
   color:var(--white);
-  backdrop-filter: blur(1px);
 }
-.hero h1{
-  margin:0 0 10px 0;
-  font-size: clamp(34px, 6vw, 56px);
-  line-height:1.02;
-  letter-spacing:.2px;
+.hero h1 {
+  margin:0 0 12px 0;
+  font-size: clamp(36px, 6vw, 64px);
+  line-height:1.1;
+  font-weight:700;
 }
-.tagline{
-  margin:0 auto 22px;
+.tagline {
+  margin:0 auto 24px;
   max-width: 46ch;
-  font-size: clamp(16px, 2.2vw, 20px);
-  color: #e5e7eb;
+  font-size: clamp(16px, 2vw, 20px);
+  color:#e5e7eb;
 }
 
 /* Form */
-.signup{
+.signup {
   display:flex;
-  gap:10px;
   justify-content:center;
-  align-items:center;
-  margin: 0 auto 10px;
-  width:100%;
-  max-width:560px;
+  gap:10px;
+  margin:0 auto 12px;
+  max-width:500px;
 }
-.input{
-  flex:1 1 auto;
-  min-width: 0;
-  padding: 14px 14px;
-  font-size: 16px;
+.signup input[type="email"] {
+  flex:1;
+  padding:14px;
   border-radius: var(--radius);
-  border: 1px solid rgba(255,255,255,.35);
+  border:1px solid rgba(255,255,255,.4);
   background: rgba(255,255,255,.12);
-  color: #fff;
-  outline: none;
-}
-.input::placeholder{ color: #e5e7ebcc; }
-.input:focus{
-  border-color:#fff;
-  background: rgba(255,255,255,.18);
-}
-
-.btn{
-  flex:0 0 auto;
-  padding: 14px 18px;
-  font-size: 15px;
-  font-weight: 650;
-  border-radius: var(--radius);
-  border: none;
   color:#fff;
-  background: var(--brand);
+}
+.signup input::placeholder { color:#e5e7ebcc; }
+.signup button {
+  padding:14px 18px;
+  font-size:15px;
+  font-weight:600;
+  border:none;
+  border-radius:var(--radius);
+  background:var(--brand);
+  color:#fff;
   cursor:pointer;
   box-shadow: var(--shadow);
 }
-.btn:hover{ background: var(--brand-hover); }
-.btn:focus-visible{ outline:2px solid #fff; outline-offset:2px; }
-
-.microcopy{
-  margin:6px 0 0;
+.signup button:hover { background: var(--brand-hover); }
+.microcopy {
   font-size:13px;
   color:#e5e7ebcc;
 }
 
-/* Optional second row */
-.about{
-  background:#fff;
-}
-.about__inner{
-  margin: 28px auto;
-  width:min(980px, 92vw);
-  padding: 18px 0 30px;
-}
-.about__inner h2{
-  margin:0 0 6px;
-  font-size: clamp(20px, 2.4vw, 26px);
-}
-.about__inner p{
-  margin:0;
-  color:#374151;
-  line-height:1.55;
-}
-
 /* Footer */
-.site-footer{
-  background:#ffffff;
+.site-footer {
+  background:#fff;
   border-top:1px solid #e5e7eb;
-}
-.footer__inner{
-  display:flex; gap:12px; flex-wrap:wrap;
-  align-items:center; justify-content:center;
-  width:min(980px, 92vw);
-  margin:0 auto;
-  padding:14px 0 18px;
-  color:#6b7280;
+  padding:14px;
+  text-align:center;
   font-size:14px;
+  color:#6b7280;
 }
-.footer__inner a{ color:#6b7280; text-decoration:none; }
-.footer__inner a:hover{ text-decoration:underline; }
-.dot{ opacity:.7 }
+.site-footer a { color:#6b7280; text-decoration:none; }
+.site-footer a:hover { text-decoration:underline; }
 
-/* === Fix centering + header overlap (override) === */
-:root { --header-height: 72px; }        /* adjust if you change the title size */
-
-.site-header {                           /* keep your larger title */
-  padding: 18px 24px;
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 60px; /* room for footer */
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.85em;
+  color: #ccc;
+}
+/* === 1) Reserve space for the footer so the hero never sits behind it === */
+:root { --footer-h: 64px; } /* adjust if your footer is taller/shorter */
 
 .hero {
-  display: grid !important;              /* ensure grid centering applies */
-  place-items: center !important;
-  min-height: 88vh;
+  min-height: calc(100vh - var(--footer-h)) !important;
 }
 
-.hero__content {
-  margin-inline: auto !important;        /* hard center horizontally */
-  text-align: center !important;
-  padding-top: calc(var(--header-height) + 12px);  /* clear the fixed header */
+/* If your footer height changes later, just tweak --footer-h above */
+.site-footer { padding: 12px 0 16px; } /* keep it compact and predictable */
+
+/* === 2) Show more of the lower/mid part of the image (where the action is) === */
+.hero__bg {
+  background-position: center 60% !important; /* bias view downward a bit */
+  /* You can try 65–70% if you want even more of the bottom visible */
 }
 
-.signup {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center;
-  gap: 10px;
+/* === 3) Soften + warm the overlay (no more ominous mask) === */
+.hero__overlay {
+  /* stack multiple subtle layers instead of one heavy dark wash */
+  background:
+    /* gentle top shadow for header legibility */
+    linear-gradient(180deg, rgba(0,0,0,.22) 0%, rgba(0,0,0,.10) 38%, rgba(0,0,0,0) 70%),
+    /* a faint warm tint over the whole hero to brighten perception */
+    linear-gradient(0deg, rgba(255, 244, 230, .10), rgba(255, 244, 230, .10));
 }
 
-/* === Fix: make hero fill the viewport; remove layout overrides === */
-
-/* undo any earlier flex layout on body/main */
-body { display: block !important; }
-main { display: block !important; }
-
-/* hero should cover the full screen height */
-.hero{
-  min-height: 100vh !important;
-  display: grid !important;
-  place-items: center !important;
-  position: relative !important;
-}
-
-/* keep the content from hiding under the fixed header */
-.hero__content{
-  padding-top: 72px !important; /* adjust if your header gets taller/shorter */
-}
-
-/* make sure the background layers cover the hero fully */
-.hero__bg,
-.hero__overlay{
-  position: absolute !important;
-  inset: 0 !important;
-}
-
-/* footer: no accidental extra gap before it */
-.site-footer{
-  margin-top: 0 !important;
-  padding: 12px 0 16px !important; /* keep it tight */
-  border-top: 1px solid #e5e7eb;
-}
+/* Optional: if the text still feels low-contrast on small screens,
+   add a tiny text shadow to the hero heading/subhead only (already present) */
+.hero h1, .tagline { text-shadow: 0 1px 2px rgba(0,0,0,.25); }
