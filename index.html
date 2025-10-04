@@ -26,19 +26,30 @@
   footer{position:absolute;left:0;right:0;bottom:0;z-index:3;text-align:center;padding:10px 0 14px;font-size:14px;color:var(--muted);
     background:linear-gradient(to top, rgba(0,0,0,.42), rgba(0,0,0,0))}
 
-  /* Center content */
-  .wrap{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:10px;padding:0 20px 76px}
+  /* Center content box */
+  .center-content {
+    position:relative; z-index:2;
+    background: rgba(0,0,0,0.35);
+    padding: 2em 3em;
+    border-radius: 10px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:12px;
+    max-width:640px;
+  }
+
   h1{font-weight:800;font-size:clamp(28px,4.6vw,44px);line-height:1.12;text-shadow:0 1px 2px rgba(0,0,0,.25)}
-  .tagline{max-width:56ch;line-height:1.22;margin:.1rem 0 .9rem;color:var(--muted)}
+  .tagline{max-width:56ch;line-height:1.3;font-size:1.3em;margin:.3rem 0 1rem;color:var(--muted)}
 
   /* Form */
-  .signup{display:grid;grid-template-columns:1fr auto;gap:12px;width:min(640px,100%)}
-  .signup input[type=email]{padding:14px 16px;border-radius:var(--radius);border:1px solid rgba(255,255,255,.38);background:rgba(0,0,0,.28);color:#fff;font-size:16px;outline:none}
+  .signup{display:grid;grid-template-columns:1fr auto;gap:12px;width:100%}
+  .signup input[type=email]{padding:14px 16px;border-radius:var(--radius);border:1px solid rgba(255,255,255,.38);background:rgba(0,0,0,.28);color:#fff;font-size:1em;outline:none}
   .signup input::placeholder{color:var(--muted)}
-  .signup button{padding:14px 18px;border:0;border-radius:var(--radius);background:var(--btn);color:#fff;font-weight:700;font-size:16px;cursor:pointer}
+  .signup button{padding:14px 18px;border:0;border-radius:var(--radius);background:var(--btn);color:#fff;font-weight:700;font-size:1em;cursor:pointer}
   .micro{max-width:640px;font-size:14px;color:var(--muted)}
 
-  @media (max-width:560px){ .signup{grid-template-columns:1fr} .wrap{padding-bottom:90px} }
+  @media (max-width:560px){ .signup{grid-template-columns:1fr} .center-content{padding:1.5em 1.2em} }
 </style>
 </head>
 <body>
@@ -49,7 +60,7 @@
 
   <header><div class="wordmark">Sunset at Main</div></header>
 
-  <div class="wrap">
+  <div class="center-content">
     <h1>Coming Soon...</h1>
     <p class="tagline">A new public–private partnership delivering mixed-income housing and community benefits in Venice.</p>
 
@@ -70,3 +81,4 @@
 <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
 </body>
 </html>
+
