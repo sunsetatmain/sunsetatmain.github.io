@@ -1,10 +1,10 @@
-/* =============== Sunset at Main (shared CSS) =============== */
+/* =============== Sunset at Main (shared) =============== */
 :root{
   --fg:#fff;
   --muted:rgba(255,255,255,.88);
   --btn:#171b22;
   --radius:14px;
-  --footer-h:56px;                 /* bump if your footer is taller */
+  --footer-h:56px;
 }
 
 /* reset */
@@ -19,15 +19,15 @@ body{
   flex-direction:column;
 }
 
-/* ---------------- Header / Title ---------------- */
+/* ------------ Header / Title ------------ */
 .site-header{
   position:absolute; top:0; left:0; right:0;
-  z-index:50;                             /* on top of overlays */
+  z-index:50; /* above overlays */
   padding:18px 20px;
   background:linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,0));
 }
 .brand{max-width:860px; margin:0 auto}
-.brand .wordmark{
+.wordmark{
   margin:0;
   font-weight:800;
   letter-spacing:.04em;
@@ -37,45 +37,39 @@ body{
   text-shadow:0 1px 2px rgba(0,0,0,.45);
 }
 
-/* ---------------- Full-screen hero (both pages) ---------------- */
+/* ------------ Full-screen hero ------------ */
 main{
   position:relative;
   flex:1 0 auto;
   min-height:calc(100vh - var(--footer-h));
   display:grid;
   place-items:center;
-  padding:84px 20px var(--footer-h);     /* top clears header; bottom clears footer */
+  padding:84px 20px var(--footer-h); /* clear header + footer */
   isolation:isolate;
   overflow:hidden;
 }
 
-/* Fallback: if a page forgets to include a bg layer, paint hero itself */
 .hero{
   position:relative;
-  min-height:100%;                        /* main already reserves footer space */
-  background: center 70% / cover no-repeat url("images/rendering.jpg");
+  min-height:100%;
 }
 
-/* Background layer — support BOTH class spellings */
-.hero__bg,
-.hero-bg{
+/* Background and overlay (same on both pages) */
+.hero__bg{
   position:absolute; inset:0; z-index:-2;
-  background: center 70% / cover no-repeat url("images/rendering.jpg") !important;
-  filter: brightness(1.06) saturate(1.04);
+  background:center 70% / cover no-repeat url("images/rendering.jpg");
+  filter:brightness(1.06) saturate(1.04);
 }
 
-/* Overlay layer — support BOTH class spellings; make it light & warm */
-.hero__overlay,
-.hero-overlay{
+.hero__overlay{
   position:absolute; inset:0; z-index:-1; pointer-events:none;
+  /* lighter, warmer — not ominous */
   background:
-    /* gentle top shade for header legibility */
     linear-gradient(180deg, rgba(0,0,0,.18) 0%, rgba(0,0,0,.08) 40%, rgba(0,0,0,0) 72%),
-    /* faint warm wash to counter “cold/dark” */
     radial-gradient(1200px 420px at 50% 38%, rgba(255,245,230,.12), rgba(255,245,230,0) 70%);
 }
 
-/* Content block */
+/* Content */
 .wrap{width:100%; max-width:860px; text-align:center; position:relative; z-index:1}
 .headline{
   margin:0 0 12px;
@@ -91,7 +85,7 @@ main{
   text-shadow:0 1px 2px rgba(0,0,0,.15);
 }
 
-/* ---------------- Form ---------------- */
+/* Form */
 .signup{
   margin:0 auto 12px;
   display:grid; grid-template-columns:1fr auto; gap:12px;
@@ -116,7 +110,7 @@ main{
 .btn:hover{filter:brightness(1.06)}
 .microcopy{margin:0 auto; max-width:640px; color:var(--muted); font-size:14px}
 
-/* ---------------- Footer ---------------- */
+/* Footer */
 .site-footer{
   flex:0 0 auto;
   text-align:center;
@@ -128,7 +122,7 @@ main{
 .site-footer a{color:#fff; text-decoration:none}
 .site-footer a:hover{text-decoration:underline}
 
-/* ---------------- Mobile tweaks ---------------- */
+/* Mobile */
 @media (max-width:560px){
   .signup{grid-template-columns:1fr}
   .btn{width:100%}
