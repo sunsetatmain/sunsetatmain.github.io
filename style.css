@@ -1,134 +1,70 @@
-/* Reset and base styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* Ensure the background image always fills the screen */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: url('rendering.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Arial', sans-serif;
 }
 
-body, html {
-  height: 100%;
-  width: 100%;
-  font-family: 'Arial', sans-serif;
-  color: white;
-  text-align: center;
-  overflow-x: hidden;
+/* Hero container for centering */
+.hero {
+    text-align: center;
+    color: white;
+    padding: 20px;
+    max-width: 800px;
 }
 
-/* Shared background for both index.html and thanks.html */
-.hero, .thankyou-hero {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  background: url('rendering.jpg') no-repeat center center;
-  background-size: cover;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
+/* Titles */
+.hero h1, 
+.hero h2 {
+    margin: 0 0 20px;
+    line-height: 1.3;   /* fixes tight spacing */
 }
 
-/* Title / wordmark */
-.wordmark {
-  position: absolute;
-  top: 30px;
-  left: 30px;
-  font-size: 1.8em;
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+/* Paragraph text */
+.hero p {
+    margin: 10px 0 20px;
+    font-size: 1.1em;
+    line-height: 1.6;   /* increase readability */
 }
 
-/* Headline */
-.headline {
-  font-size: 2.2em;
-  font-weight: bold;
-  line-height: 1.2;          /* tighter spacing */
-  margin-bottom: 0.5em;
-}
-
-/* Tagline */
-.tagline {
-  font-size: 1.1em;
-  line-height: 1.25;         /* compact and balanced */
-  max-width: 600px;          /* keeps it from stretching across the screen */
-  margin: 0 auto 1.5em auto;
-  text-align: center;
-}
-
-/* Form styling */
+/* Email form */
 form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 1em;
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
 }
 
 input[type="email"] {
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  width: 250px;
-  max-width: 80%;
-  font-size: 1em;
+    padding: 10px;
+    border-radius: 5px 0 0 5px;
+    border: none;
+    width: 300px;
+    font-size: 1em;
 }
 
 button {
-  padding: 10px 20px;
-  background-color: #111;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 1em;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #333;
-}
-
-/* Disclaimer */
-.disclaimer {
-  font-size: 0.8em;
-  margin-top: 10px;
-  line-height: 1.2;
+    padding: 10px 20px;
+    border-radius: 0 5px 5px 0;
+    border: none;
+    background-color: #111;
+    color: white;
+    cursor: pointer;
+    font-size: 1em;
 }
 
 /* Footer */
 footer {
-  position: absolute;
-  bottom: 15px;
-  width: 100%;
-  text-align: center;
-  font-size: 0.75em;
-  color: rgba(255,255,255,0.8);
-}
-/* --- Tighten hero layout & copy --- */
-.wrap{
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  gap: 10px !important;              /* single source of vertical spacing */
-}
-
-.headline{
-  line-height: 1.1 !important;       /* tighter than default */
-  margin: 0 0 .25em 0 !important;    /* small space under headline */
-}
-
-.tagline{
-  max-width: 48ch !important;        /* keep it a readable column, not full width */
-  line-height: 1.25 !important;      /* compact but readable */
-  margin: 0 0 .9em 0 !important;     /* modest space before the form */
-  text-align: center !important;
-}
-
-/* form shouldn’t add extra vertical space */
-.signup{ margin: 0 !important; }
-
-/* small screens: a touch more breathing room only where needed */
-@media (max-width: 560px){
-  .wrap{ gap: 12px !important; }
-  .tagline{ max-width: 34ch !important; }
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-size: 0.9em;
 }
