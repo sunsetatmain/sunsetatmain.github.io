@@ -1,106 +1,106 @@
-/* ==== Full-screen hero on both pages ==== */
-*{box-sizing:border-box}
-html,body{height:100%;margin:0}
-body{
-  font:400 16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-  color:#fff;
-  background:#000;
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* One full-screen canvas */
-.hero{
-  position:relative;
-  height:100vh;                 /* exactly the viewport */
-  width:100vw;
-  overflow:hidden;
+body, html {
+  height: 100%;
+  width: 100%;
+  font-family: 'Arial', sans-serif;
+  color: white;
+  text-align: center;
+  overflow-x: hidden;
 }
 
-/* Background image */
-.hero__bg{
-  position:absolute; inset:0; z-index:0;
-  background: center 72% / cover no-repeat url("images/rendering.jpg");
-  filter: brightness(1.05) saturate(1.05);
+/* Shared background for both index.html and thanks.html */
+.hero, .thankyou-hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: url('rendering.jpg') no-repeat center center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 
-/* Light, non-ominous overlay (top only for legibility) */
-.hero__overlay{
-  position:absolute; inset:0; z-index:1; pointer-events:none;
-  background:
-    linear-gradient(180deg, rgba(0,0,0,.18) 0%, rgba(0,0,0,.08) 38%, rgba(0,0,0,0) 70%);
+/* Title / wordmark */
+.wordmark {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  font-size: 1.8em;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-/* Header on top of the image */
-.site-header{
-  position:absolute; top:0; left:0; right:0; z-index:3;
-  padding:18px 20px;
-  background:linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,0));
-}
-.wordmark{
-  margin:0; font-weight:800; text-transform:uppercase; letter-spacing:.04em;
-  font-size:clamp(22px,3.2vw,34px);
-  text-shadow:0 1px 2px rgba(0,0,0,.45);
-}
-
-/* Centered content */
-.wrap{
-  position:absolute; z-index:2;
-  inset:0; display:grid; place-items:center; text-align:center;
-  padding:0 20px 72px;          /* bottom pad so footer doesn't cover text */
-}
-.headline{
-  margin:0 0 12px; font-weight:800;
-  font-size:clamp(28px,4vw+4px,44px);
-  text-shadow:0 1px 2px rgba(0,0,0,.25);
-}
-.tagline{
-  margin:0 auto 24px; max-width:720px; color:rgba(255,255,255,.9);
-  font-size:clamp(16px,1.2vw+10px,20px);
-  text-shadow:0 1px 2px rgba(0,0,0,.15);
-}
-
-/* Form */
-.signup{ display:grid; grid-template-columns:1fr auto; gap:12px; width:min(640px,100%); margin:0 auto 10px; }
-.sr-only{position:absolute; left:-9999px}
-.input{
-  padding:14px 16px; border-radius:14px; border:1px solid rgba(255,255,255,.38);
-  background:rgba(0,0,0,.28); color:#fff; outline:none; font-size:16px;
-}
-.input::placeholder{color:rgba(255,255,255,.85)}
-.input:focus{border-color:#fff; background:rgba(0,0,0,.22)}
-.btn{
-  padding:14px 18px; border:0; border-radius:14px; cursor:pointer;
-  font-weight:700; font-size:16px; color:#fff; background:#171b22;
-  box-shadow:0 10px 30px rgba(0,0,0,.25);
-}
-.btn:hover{filter:brightness(1.06)}
-.microcopy{margin:0 auto; max-width:640px; color:rgba(255,255,255,.88); font-size:14px}
-
-/* Footer over the image (no page growth, no cropping issues) */
-.site-footer{
-  position:absolute; left:0; right:0; bottom:0; z-index:3;
-  text-align:center; font-size:14px; color:rgba(255,255,255,.9);
-  padding:10px 0 14px;
-  background:linear-gradient(to top, rgba(0,0,0,.42), rgba(0,0,0,0));
-}
-.site-footer a{color:#fff; text-decoration:none}
-.site-footer a:hover{text-decoration:underline}
-
-/* Mobile */
-@media (max-width:560px){
-  .signup{grid-template-columns:1fr}
-  .btn{width:100%}
-}
-/* Headline tighter line-height */
+/* Headline */
 .headline {
-  line-height: 1.15;   /* default is ~1.5, this pulls words closer together */
+  font-size: 2.2em;
+  font-weight: bold;
+  line-height: 1.2;          /* tighter spacing */
+  margin-bottom: 0.5em;
 }
 
-/* Tagline slightly looser than headline, but not full 1.5 */
+/* Tagline */
 .tagline {
-  line-height: 1.3;    /* balances readability without feeling airy */
+  font-size: 1.1em;
+  line-height: 1.25;         /* compact and balanced */
+  max-width: 600px;          /* keeps it from stretching across the screen */
+  margin: 0 auto 1.5em auto;
+  text-align: center;
 }
 
-/* Microcopy at the bottom can stay smaller and tighter */
-.microcopy {
-  line-height: 1.4;
+/* Form styling */
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1em;
+}
+
+input[type="email"] {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  width: 250px;
+  max-width: 80%;
+  font-size: 1em;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #111;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #333;
+}
+
+/* Disclaimer */
+.disclaimer {
+  font-size: 0.8em;
+  margin-top: 10px;
+  line-height: 1.2;
+}
+
+/* Footer */
+footer {
+  position: absolute;
+  bottom: 15px;
+  width: 100%;
+  text-align: center;
+  font-size: 0.75em;
+  color: rgba(255,255,255,0.8);
 }
