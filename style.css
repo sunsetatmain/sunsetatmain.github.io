@@ -1,71 +1,82 @@
-/* ===== Sunset at Main – shared styles for landing + thank-you ===== */
-
+/* =============== Sunset at Main (shared CSS) =============== */
 :root{
   --fg:#fff;
   --muted:rgba(255,255,255,.88);
-  --glass:rgba(0,0,0,.30);
   --btn:#171b22;
   --radius:14px;
-
-  /* keep hero above footer on all viewports */
-  --footer-h:56px; /* bump to 60–64px if your footer gets taller */
+  --footer-h:56px;                 /* bump if your footer is taller */
 }
 
+/* reset */
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
   margin:0;
   color:var(--fg);
   font:400 16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-  display:flex;               /* footer after main */
+  background:#000;
+  display:flex;
   flex-direction:column;
-  background:#000;            /* shows behind any letterboxing while images load */
 }
 
-/* ----- Header wordmark ----- */
+/* ---------------- Header / Title ---------------- */
 .site-header{
-  position:absolute; top:0; left:0; right:0; z-index:10;
+  position:absolute; top:0; left:0; right:0;
+  z-index:50;                             /* on top of overlays */
   padding:18px 20px;
   background:linear-gradient(to bottom, rgba(0,0,0,.35), rgba(0,0,0,0));
 }
-.brand{max-width:860px; margin:0 auto; color:var(--muted)}
+.brand{max-width:860px; margin:0 auto}
 .brand .wordmark{
   margin:0;
   font-weight:800;
   letter-spacing:.04em;
   text-transform:uppercase;
   font-size:clamp(22px,3.2vw,34px);
+  color:#fff;
+  text-shadow:0 1px 2px rgba(0,0,0,.45);
 }
 
-/* ----- Full-viewport hero (shared by both pages) ----- */
+/* ---------------- Full-screen hero (both pages) ---------------- */
 main{
+  position:relative;
   flex:1 0 auto;
-  min-height:calc(100vh - var(--footer-h)); /* hero fills the screen above footer */
+  min-height:calc(100vh - var(--footer-h));
   display:grid;
   place-items:center;
-  position:relative;
-  padding:84px 20px var(--footer-h); /* top pad clears the fixed header */
+  padding:84px 20px var(--footer-h);     /* top clears header; bottom clears footer */
   isolation:isolate;
   overflow:hidden;
 }
 
-/* Background image + warm/bright overlay (not ominous) */
+/* Fallback: if a page forgets to include a bg layer, paint hero itself */
+.hero{
+  position:relative;
+  min-height:100%;                        /* main already reserves footer space */
+  background: center 70% / cover no-repeat url("images/rendering.jpg");
+}
+
+/* Background layer — support BOTH class spellings */
+.hero__bg,
 .hero-bg{
   position:absolute; inset:0; z-index:-2;
-  background:center 70% / cover no-repeat url("images/rendering.jpg");
-  transform:translateZ(0);
-  filter:brightness(1.06) saturate(1.04);
+  background: center 70% / cover no-repeat url("images/rendering.jpg") !important;
+  filter: brightness(1.06) saturate(1.04);
 }
-.hero-bg::after{
-  content:""; position:absolute; inset:0; z-index:-1; pointer-events:none;
-  /* gentle top shade for header legibility + faint warm wash */
+
+/* Overlay layer — support BOTH class spellings; make it light & warm */
+.hero__overlay,
+.hero-overlay{
+  position:absolute; inset:0; z-index:-1; pointer-events:none;
   background:
+    /* gentle top shade for header legibility */
     linear-gradient(180deg, rgba(0,0,0,.18) 0%, rgba(0,0,0,.08) 40%, rgba(0,0,0,0) 72%),
+    /* faint warm wash to counter “cold/dark” */
     radial-gradient(1200px 420px at 50% 38%, rgba(255,245,230,.12), rgba(255,245,230,0) 70%);
 }
 
 /* Content block */
-.wrap{width:100%; max-width:860px; text-align:center}
+.wrap{width:100%; max-width:860px; text-align:center; position:relative; z-index:1}
 .headline{
   margin:0 0 12px;
   font-size:clamp(28px,4vw+4px,44px);
@@ -80,7 +91,7 @@ main{
   text-shadow:0 1px 2px rgba(0,0,0,.15);
 }
 
-/* ----- Form ----- */
+/* ---------------- Form ---------------- */
 .signup{
   margin:0 auto 12px;
   display:grid; grid-template-columns:1fr auto; gap:12px;
@@ -88,30 +99,24 @@ main{
 }
 .sr-only{position:absolute; left:-9999px}
 .input{
-  width:100%;
-  padding:14px 16px;
+  width:100%; padding:14px 16px; font-size:16px;
   border-radius:var(--radius);
   border:1px solid rgba(255,255,255,.35);
-  background:var(--glass);
-  color:var(--fg);
-  font-size:16px;
-  outline:none;
+  background:rgba(0,0,0,.30);
+  color:#fff; outline:none;
 }
 .input::placeholder{color:var(--muted)}
 .input:focus{border-color:#fff; background:rgba(0,0,0,.22)}
 .btn{
-  padding:14px 18px;
-  border-radius:var(--radius);
-  border:0;
-  font-weight:700; font-size:16px;
+  padding:14px 18px; font-weight:700; font-size:16px;
+  border:0; border-radius:var(--radius); cursor:pointer;
   color:#fff; background:var(--btn);
-  cursor:pointer;
   box-shadow:0 10px 30px rgba(0,0,0,.25);
 }
 .btn:hover{filter:brightness(1.06)}
 .microcopy{margin:0 auto; max-width:640px; color:var(--muted); font-size:14px}
 
-/* ----- Footer ----- */
+/* ---------------- Footer ---------------- */
 .site-footer{
   flex:0 0 auto;
   text-align:center;
@@ -123,7 +128,7 @@ main{
 .site-footer a{color:#fff; text-decoration:none}
 .site-footer a:hover{text-decoration:underline}
 
-/* ----- Mobile tweaks ----- */
+/* ---------------- Mobile tweaks ---------------- */
 @media (max-width:560px){
   .signup{grid-template-columns:1fr}
   .btn{width:100%}
