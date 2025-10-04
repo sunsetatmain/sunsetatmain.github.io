@@ -90,3 +90,17 @@ body{
   .signup{grid-template-columns:1fr}
   .btn{width:100%}
 }
+/* Headline tighter line-height */
+.headline {
+  line-height: 1.15;   /* default is ~1.5, this pulls words closer together */
+}
+
+/* Tagline slightly looser than headline, but not full 1.5 */
+.tagline {
+  line-height: 1.3;    /* balances readability without feeling airy */
+}
+
+/* Microcopy at the bottom can stay smaller and tighter */
+.microcopy {
+  line-height: 1.4;
+}
