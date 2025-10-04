@@ -104,3 +104,31 @@ footer {
   font-size: 0.75em;
   color: rgba(255,255,255,0.8);
 }
+/* --- Tighten hero layout & copy --- */
+.wrap{
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 10px !important;              /* single source of vertical spacing */
+}
+
+.headline{
+  line-height: 1.1 !important;       /* tighter than default */
+  margin: 0 0 .25em 0 !important;    /* small space under headline */
+}
+
+.tagline{
+  max-width: 48ch !important;        /* keep it a readable column, not full width */
+  line-height: 1.25 !important;      /* compact but readable */
+  margin: 0 0 .9em 0 !important;     /* modest space before the form */
+  text-align: center !important;
+}
+
+/* form shouldn’t add extra vertical space */
+.signup{ margin: 0 !important; }
+
+/* small screens: a touch more breathing room only where needed */
+@media (max-width: 560px){
+  .wrap{ gap: 12px !important; }
+  .tagline{ max-width: 34ch !important; }
+}
